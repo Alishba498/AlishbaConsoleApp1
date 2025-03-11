@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace AlishbaConsoleApp1
 {
@@ -10,14 +6,29 @@ namespace AlishbaConsoleApp1
     {
         static void Main(string[] args)
         {
-            int fact = 1;
-            Console.WriteLine("Enter Number");
-            int number = int.Parse(Console.ReadLine());
-            for(int i = number; i >= 1; i--) 
+            Console.WriteLine("Enter a positive integer:");
+
+            
+            if (int.TryParse(Console.ReadLine(), out int number) && number >= 0)
             {
-                fact = fact * i;
+                long factorial = CalculateFactorial(number);
+                Console.WriteLine($"The Factorial of {number} is: {factorial}");
             }
-            Console.WriteLine("The Factorial Number is:(0)", fact);
+            else
+            {
+                Console.WriteLine("Invalid input! Please enter a non-negative integer.");
+            }
+        }
+
+        
+        static long CalculateFactorial(int num)
+        {
+            long fact = 1;
+            for (int i = 2; i <= num; i++)
+            {
+                fact *= i;
+            }
+            return fact;
         }
     }
 }

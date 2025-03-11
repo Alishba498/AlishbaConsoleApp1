@@ -1,23 +1,32 @@
-# Project Title
 
-# Factorial Calculator (C# Console Application)
-
-## Table of Contents
-- [Description](#description)
-- [How It Works](#how-it-works)
-- [Code](#code)
-- [How to Run](#how-to-run)
-- [Example Output](#example-output)
-- [Requirements](#requirements)
-- [License](#license)
+# AlishbaConsoleApp1 - Factorial Calculator
 
 ## Description
-This is a simple C# console application that calculates the factorial of a given number. The user inputs a number, and the program computes its factorial using a loop.
+This is a simple **C# console application** that calculates the factorial of a given number. The program ensures user-friendly input validation and improved code structure.
 
-## How It Works
-1. The program prompts the user to enter a number.
-2. It calculates the factorial of the entered number using a `for` loop.
-3. The result is then displayed on the console.
+## Features
+ Calculates the factorial of a given number.
+ Handles non-integer inputs and prevents crashes.
+ Ensures only non-negative integers are accepted.
+ Uses a separate method for better code readability.
+
+## How to Run
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/AlishbaConsoleApp1.git
+   cd AlishbaConsoleApp1
+   ```
+
+2. **Compile and Run the Code**
+   - Open the project in **Visual Studio** or **VS Code**.
+   - Run the following command in the terminal:
+     ```bash
+     dotnet run
+     ```
+
+3. **Enter a Number**
+   - The program will prompt you to enter a positive integer.
+   - It will calculate and display the factorial of the given number.
 
 ## Code
 ```csharp
@@ -29,38 +38,41 @@ namespace AlishbaConsoleApp1
     {
         static void Main(string[] args)
         {
-            int fact = 1;
-            Console.WriteLine("Enter Number");
-            int number = int.Parse(Console.ReadLine());
-            for(int i = number; i >= 1; i--) 
+            Console.WriteLine("Enter a positive integer:");
+
+            if (int.TryParse(Console.ReadLine(), out int number) && number >= 0)
             {
-                fact = fact * i;
+                long factorial = CalculateFactorial(number);
+                Console.WriteLine($"The Factorial of {number} is: {factorial}");
             }
-            Console.WriteLine("The Factorial Number is: {0}", fact);
+            else
+            {
+                Console.WriteLine("Invalid input! Please enter a non-negative integer.");
+            }
+        }
+
+        static long CalculateFactorial(int num)
+        {
+            long fact = 1;
+            for (int i = 2; i <= num; i++)
+            {
+                fact *= i;
+            }
+            return fact;
         }
     }
 }
 ```
 
-## How to Run
-1. Clone the repository:
-   ```sh
-   git clone <repository_url>
-   ```
-2. Open the project in Visual Studio or any C# compiler.
-3. Run the program and enter a number when prompted.
-4. The factorial of the entered number will be displayed.
+## Modifications Made
+1. **Input Validation**: Ensures the user enters a valid number.
+2. **Error Handling**: Prevents crashes if non-numeric input is given.
+3. **Separate Method (`CalculateFactorial`)**: Improves code readability and modularity.
+4. **Supports Large Factorial Values**: Uses `long` instead of `int` for large numbers.
 
-## Example Output
-```
-Enter Number
-5
-The Factorial Number is: 120
-```
-
-## Requirements
-- .NET Framework or .NET Core
-- A C# compiler (Visual Studio, Visual Studio Code, or any other C# IDE)
+## Contributions
+Feel free to contribute! Fork the repo, make changes, and submit a pull request.
 
 ## License
-This project is open-source and available for modification and distribution.
+This project is open-source and available under the **MIT License**.
+
